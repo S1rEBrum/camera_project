@@ -1,16 +1,17 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include <esp_now.h>     // main protocol
-#include <WiFi.h>        // WIFI handler
-#include <esp_wifi.h>    // WIFI for ESP boards
-#include "esp_camera.h"  // camera initializer
+// Include necessary libraries
+#include <esp_now.h>     // Main protocol for ESP-NOW
+#include <WiFi.h>        // WiFi handler
+#include <esp_wifi.h>    // WiFi functions for ESP boards
+#include "esp_camera.h"  // Camera initializer
 #include "Arduino.h"
-#include "FS.h"                // SD Card ESP32
-#include "SD_MMC.h"            // SD Card ESP32
-#include "soc/soc.h"           // Disable brownour problems
-#include "soc/rtc_cntl_reg.h"  // Disable brownour problems
-#include "driver/rtc_io.h"
+#include "FS.h"                // File system for SD Card on ESP32
+#include "SD_MMC.h"            // SD Card library for ESP32
+#include "soc/soc.h"           // Disable brownout problems
+#include "soc/rtc_cntl_reg.h"  // Disable brownout problems
+#include "driver/rtc_io.h"     // RTC I/O driver
 
 // Pin definition for CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM 32
@@ -30,33 +31,38 @@
 #define HREF_GPIO_NUM 23
 #define PCLK_GPIO_NUM 22
 
-// Pin definition for nRF24L01
-#define NRF_CE_PIN 2 // 13
-#define NRF_CSN_PIN 15
-#define NRF_SCK_PIN 14
-#define NRF_MISO_PIN 12 // 2
-#define NRF_MOSI_PIN 13 // 4
+// Pin definition for nRF24L01 radio module
+#define NRF_CE_PIN 2     // Chip Enable pin
+#define NRF_CSN_PIN 15   // Chip Select Not pin
+#define NRF_SCK_PIN 14   // Serial Clock pin
+#define NRF_MISO_PIN 12  // Master In Slave Out pin
+#define NRF_MOSI_PIN 13  // Master Out Slave In pin
 
-// Pin definition for HC-SR501
-#define HC_SR501_OUT_PIN 12
+// Pin definition for HC-SR501 motion sensor
+#define HC_SR501_OUT_PIN 12  // Output pin for the motion sensor
 
-#define SET_DEBUG false
+// Debugging settings
+#define SET_DEBUG false  // Debugging flag
 
-#define BAUDRATE 115200
-#define DELAY_BETWEEN_IMAGES 10000  // seconds between taking two images
-#define SETUP_DELAY 10000
-#define PACKETS_DELAY 5
+// Serial communication settings
+#define BAUDRATE 115200  // Baud rate for serial communication
 
-// NR
-#define PACKET_SIZE 30
-#define PIPE 0x1234567890LL
+// Timing settings
+#define DELAY_BETWEEN_IMAGES 10000  // Delay between capturing two images in milliseconds
+#define SETUP_DELAY 10000           // Setup delay in milliseconds
+#define PACKETS_DELAY 5             // Delay between packet transmissions in milliseconds
 
-uint8_t* fb = nullptr;
-long image_size = 0;
-long packet_counter = 0;
-uint8_t buf[PACKET_SIZE] = { 0 };
-long failures = 0;
+// nRF24L01 radio module settings
+#define PACKET_SIZE 30       // Size of each packet in bytes
+#define PIPE 0x1234567890LL  // Address of the communication pipe
 
-SPIClass *hspi = NULL;
+// Global variables
+uint8_t* fb = nullptr;             // Pointer to the frame buffer
+long image_size = 0;               // Size of the image
+long packet_counter = 0;           // Counter for packets
+uint8_t buf[PACKET_SIZE] = { 0 };  // Buffer for packets
+long failures = 0;                 // Counter for failures
+
+SPIClass* hspi = NULL;  // Pointer to the HSPI instance
 
 #endif /* CONSTANTS_H */
