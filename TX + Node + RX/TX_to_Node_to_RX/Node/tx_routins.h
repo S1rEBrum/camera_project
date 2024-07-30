@@ -60,6 +60,7 @@ void init_tx_radio() {
   radio.setDataRate(RF24_1MBPS);   // Set the data rate
   radio.setPALevel(RF24_PA_HIGH);  // Set the power amplifier level
   radio.openWritingPipe(TX_PIPE);  // Open the writing pipe
+  return;
 }
 
 // main function to send the image

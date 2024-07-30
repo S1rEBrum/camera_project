@@ -104,7 +104,6 @@ void receive_image() {
     // Check if the end of the image has been received
     if (got_image_end(buf)) {
       Serial.println("Got end packet");
-      // delay(100);
       // Save the image to the SD card
       save_image_to_sd(fb, image_size);
       // delete[] fb;                    // Free the allocated memory for the image
@@ -112,7 +111,7 @@ void receive_image() {
       packet_counter = 0;             // Reset the packet counter
       receiving_image = false;        // Reset the receiving image flag
       receiving_credentials = false;  // Reset the receiving credentials flag
-      // Serial.println("Finished getting the image. Now starting send.");
+      Serial.println("Finished getting the image. Start sending now.");
       // init_tx_radio();                // need to add it!!
       // send_image(fb);
       delete[] fb;
