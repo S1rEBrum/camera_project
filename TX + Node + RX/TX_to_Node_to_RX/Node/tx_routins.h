@@ -67,34 +67,34 @@ void init_tx_radio() {
 void send_image(uint8_t* fb) {
   int start_time = millis();  // Record the start time
 
-  String path = "/picture" + String(image_counter) + ".jpg";
-  fs::FS& fs = SD;  // Reference to the file system
+  // String path = "/picture" + String(counter) + ".jpg";
+  // fs::FS& fs = SD;  // Reference to the file system
 
-  File img = fs.open(path.c_str(), FILE_READ);
+  // File img = fs.open(path.c_str(), FILE_READ);
 
-  if (img) {
-    image_size = img.size();
-    if (SET_DEBUG) { Serial.printf("Image size is %d bytes\n", image_size); };
-    fb = new uint8_t[image_size * sizeof(uint8_t)];
-    if (fb == NULL) {
-      Serial.println("Could not allocate the memory.");
-      delete[] fb;
-      return;
-    }
-    // read until there's nothing else in it:
-    while (img.available()) {
-      img.read(fb, image_size);
-    }
+  // if (img) {
+  //   image_size = img.size();
+  //   if (SET_DEBUG) { Serial.printf("Image size is %d bytes\n", image_size); };
+  //   fb = new uint8_t[image_size * sizeof(uint8_t)];
+  //   if (fb == NULL) {
+  //     Serial.println("Could not allocate the memory.");
+  //     delete[] fb;
+  //     return;
+  //   }
+  //   // read until there's nothing else in it:
+  //   while (img.available()) {
+  //     img.read(fb, image_size);
+  //   }
+  //   Serial.printf("The image size is: %d\n", image_size);
+  //   Serial.printf("Number of packets to send is: %d\n", image_size / PACKET_SIZE);
 
-    Serial.printf("Number of packets to send is: %d\n", image_size / PACKET_SIZE);
-
-    // close the file:
-    img.close();
-  } else {
-    Serial.println("No image found.\n");
-    return;
-  };
-
+  //   // close the file:
+  //   img.close();
+  // } else {
+  //   Serial.println("No image found.\n");
+  //   return;
+  // };
+  image_size = sizeof(fb);
   if (SET_DEBUG) {
     Serial.printf("Image size: %zu bytes\n", image_size);
   }
@@ -145,6 +145,7 @@ void send_image(uint8_t* fb) {
 
   Serial.printf("The time taken is %3.3f seconds\n\n", (millis() - start_time) / 1000.0);
   // esp_camera_fb_return(fb);  // Return the buffer
+  delete [] fb;
   fb = NULL;
 }
 

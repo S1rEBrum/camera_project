@@ -58,10 +58,10 @@ bool got_image_end(uint8_t buffer[]) {
 }
 
 // Function to save an image to the SD card
-void save_image_to_sd(uint8_t* fb, int size) {
+bool save_image_to_sd(uint8_t* fb, int size) {
   if (size <= 0) {
     Serial.println("No correct data to save\n");
-    return;
+    return false;
   }
   Serial.println("Starting the writing to SD");
 
@@ -83,6 +83,7 @@ void save_image_to_sd(uint8_t* fb, int size) {
   }
   file.close();     // Close the file
   image_counter++;  // Increment the image counter
+  return true;
 }
 
 // main function for receiving the images
@@ -105,16 +106,17 @@ void receive_image() {
     if (got_image_end(buf)) {
       Serial.println("Got end packet");
       // Save the image to the SD card
-      save_image_to_sd(fb, image_size);
+      bool saved = save_image_to_sd(fb, image_size);
       // delete[] fb;                    // Free the allocated memory for the image
       image_size = 0;                 // Reset the image size
       packet_counter = 0;             // Reset the packet counter
       receiving_image = false;        // Reset the receiving image flag
       receiving_credentials = false;  // Reset the receiving credentials flag
-      Serial.println("Finished getting the image. Start sending now.");
-      // init_tx_radio();                // need to add it!!
-      // send_image(fb);
-      delete[] fb;
+      if (saved) {
+        Serial.println("Finished getting the image. Start sending now.");
+        init_tx_radio();  // need to add it!!
+        send_image(fb);
+      }
     }
     // Check if image data is being received
     else if (receiving_image) {
