@@ -2,7 +2,7 @@
 
 https://s1rebrum.github.io/camera_project/
 
---
+---
 ### Project abstract: 
 Large cargo ships transfer containers, cars and additional goods. Therefore, monitoring security state at various locations on a ship is crucial. Current solutions rely on standard CCTV cameras, which require constant power and Ethernet connections.
 
@@ -14,7 +14,8 @@ Our project aims to develop such a solution: a low-power, low-cost camera system
 
 This project involves multiple engineering sub-tasks, including selecting the appropriate wireless connection type, choosing the right hardware, image processing via code and working with CMOS camera sensors. Our goal is to create a viable prototype that successfully passes testing and meets the company's requirements, paving the way for further development into a real-life product.
 
---
+---
+
 
 
 
