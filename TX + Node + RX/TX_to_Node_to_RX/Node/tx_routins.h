@@ -143,7 +143,7 @@ bool send_image(uint8_t* fb, int image_size) {
     return false;
   }
 
-  Serial.printf("The time taken is %3.3f seconds\n\n", (millis() - start_time) / 1000.0);
+  Serial.printf("The time taken is %3.3f seconds\n", (millis() - start_time) / 1000.0);
   // esp_camera_fb_return(fb);  // Return the buffer
   delete[] fb;
   fb = NULL;

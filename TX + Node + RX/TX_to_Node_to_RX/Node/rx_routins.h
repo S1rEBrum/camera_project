@@ -115,7 +115,7 @@ void receive_image() {
         if (sent_successfully) {
           Serial.println("Image sent successfully.");
         } else {
-          Serial.println("Sendind image failed.");
+          Serial.println("Sending image failed.");
         }
       }
       image_size = 0;                 // Reset the image size
