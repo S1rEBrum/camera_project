@@ -122,7 +122,7 @@ void receive_image() {
       packet_counter = 0;             // Reset the packet counter
       receiving_image = false;        // Reset the receiving image flag
       receiving_credentials = false;  // Reset the receiving credentials flag
-      return;
+      init_rx_radio();
     }
     // Check if image data is being received
     else if (receiving_image) {
