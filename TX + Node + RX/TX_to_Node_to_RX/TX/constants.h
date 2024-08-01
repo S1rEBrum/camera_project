@@ -48,9 +48,9 @@
 #define BAUDRATE 115200  // Baud rate for serial communication
 
 // Timing settings
-#define DELAY_BETWEEN_IMAGES 10000  // Delay between capturing two images in milliseconds
+#define DELAY_BETWEEN_IMAGES 20000  // Delay between capturing two images in milliseconds
 #define SETUP_DELAY 10000           // Setup delay in milliseconds
-#define PACKETS_DELAY 0.1             // Delay between packet transmissions in milliseconds
+#define PACKETS_DELAY 1             // Delay between packet transmissions in milliseconds
 
 // nRF24L01 radio module settings
 #define PACKET_SIZE 30       // Size of each packet in bytes
