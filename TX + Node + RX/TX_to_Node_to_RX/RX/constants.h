@@ -10,7 +10,6 @@
 #define BAUDRATE 115200      // Baud rate for serial communication
 #define SET_DEBUG false      // Debugging flag
 #define PACKET_SIZE 30       // Size of each packet
-// #define PIPE 0x1234567890LL  // Address of the radio communication pipe
 #define PIPE 0x0987654321LL  // Address of the radio communication pipe
 
 // Declare global variables
