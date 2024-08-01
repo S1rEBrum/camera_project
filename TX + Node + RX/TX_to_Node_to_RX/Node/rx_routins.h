@@ -108,15 +108,21 @@ void receive_image() {
       // Save the image to the SD card
       bool saved = save_image_to_sd(fb, image_size);
       // delete[] fb;                    // Free the allocated memory for the image
+      if (saved) {
+        Serial.println("Finished getting the image. Start sending now.");
+        init_tx_radio();  // need to add it!!
+        bool sent_successfully = send_image(fb, image_size);
+        if (sent_successfully) {
+          Serial.println("Image sent successfully.");
+        } else {
+          Serial.println("Sendind image failed.");
+        }
+      }
       image_size = 0;                 // Reset the image size
       packet_counter = 0;             // Reset the packet counter
       receiving_image = false;        // Reset the receiving image flag
       receiving_credentials = false;  // Reset the receiving credentials flag
-      if (saved) {
-        Serial.println("Finished getting the image. Start sending now.");
-        init_tx_radio();  // need to add it!!
-        send_image(fb);
-      }
+      return;
     }
     // Check if image data is being received
     else if (receiving_image) {

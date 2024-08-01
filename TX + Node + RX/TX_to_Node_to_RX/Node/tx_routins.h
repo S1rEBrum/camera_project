@@ -64,7 +64,7 @@ void init_tx_radio() {
 }
 
 // main function to send the image
-void send_image(uint8_t* fb) {
+bool send_image(uint8_t* fb, int image_size) {
   int start_time = millis();  // Record the start time
 
   // String path = "/picture" + String(counter) + ".jpg";
@@ -94,7 +94,7 @@ void send_image(uint8_t* fb) {
   //   Serial.println("No image found.\n");
   //   return;
   // };
-  image_size = sizeof(fb);
+  // image_size = sizeof(fb);
   if (SET_DEBUG) {
     Serial.printf("Image size: %zu bytes\n", image_size);
   }
@@ -132,21 +132,22 @@ void send_image(uint8_t* fb) {
         Serial.println("The final packet was sent successfully");
       } else {
         Serial.println("The final packet failed");
-        return;
+        return false;
       }
     } else {
       Serial.println("The credentials packet failed");
-      return;
+      return false;
     }
   } else {
     Serial.println("The starting packet failed");
-    return;
+    return false;
   }
 
   Serial.printf("The time taken is %3.3f seconds\n\n", (millis() - start_time) / 1000.0);
   // esp_camera_fb_return(fb);  // Return the buffer
-  delete [] fb;
+  delete[] fb;
   fb = NULL;
+  return true;
 }
 
 #endif /* TX_ROUTINS_H */
