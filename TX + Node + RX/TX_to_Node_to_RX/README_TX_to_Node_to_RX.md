@@ -9,4 +9,4 @@ Possible solutions: change writing pipe for the radio (tried - did not work on i
 current one for TX uses channel 5, try bigger value (~100) etc; check the Node-to-RX logic once more, maybe the radio is not configured and tries 
 to listen to the TX pipe at the same time. 
 
-UPDATE 01.08.24: The 3-point system worked, got the image on the receiver after node (see the folder for the image)
+UPDATE 01.08.24: The 3-point system worked, got the image on the receiver after node (see the folder for the image sent and screenshot from the IDE)
