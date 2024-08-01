@@ -8,3 +8,5 @@ The receiver part does not succeed in sending the starting packet - meaning it h
 Possible solutions: change writing pipe for the radio (tried - did not work on its own); change the channel (calculation is 2400MHz + channel value), 
 current one for TX uses channel 5, try bigger value (~100) etc; check the Node-to-RX logic once more, maybe the radio is not configured and tries 
 to listen to the TX pipe at the same time. 
+
+UPDATE 01.08.24: The 3-point system worked, got the image on the receiver after node (see the folder for the image)
