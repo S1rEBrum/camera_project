@@ -157,10 +157,10 @@ bool radio_init(SPIClass* hspi) {
   } else {
     Serial.println("\n\nRadio initialized successfully");
   }
-  radio.setChannel(5);             // Set the radio channel
-  radio.setDataRate(RF24_1MBPS);   // Set the data rate
-  radio.setPALevel(RF24_PA_HIGH);  // Set the power amplifier level
-  radio.openWritingPipe(PIPE);     // Open the writing pipe
+  radio.setChannel(5);            // Set the radio channel
+  radio.setDataRate(RF24_2MBPS);  // Set the data rate
+  radio.setPALevel(RF24_PA_LOW);  // Set the power amplifier level
+  radio.openWritingPipe(PIPE);    // Open the writing pipe
   return true;
 }
 

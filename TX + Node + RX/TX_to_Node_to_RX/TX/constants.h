@@ -39,7 +39,7 @@
 #define NRF_MOSI_PIN 13  // Master Out Slave In pin
 
 // Pin definition for HC-SR501 motion sensor
-#define HC_SR501_OUT_PIN 12  // Output pin for the motion sensor
+// #define HC_SR501_OUT_PIN 12  // Output pin for the motion sensor
 
 // Debugging settings
 #define SET_DEBUG false  // Debugging flag

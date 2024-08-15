@@ -15,7 +15,7 @@ void setup() {
   digitalWrite(NRF_MISO_PIN, LOW);
 
   // Initialize HC-SR501 pin
-  pinMode(HC_SR501_OUT_PIN, INPUT);
+  // pinMode(HC_SR501_OUT_PIN, INPUT);
 
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);  //disable brownout detector
   Serial.begin(BAUDRATE);
@@ -29,6 +29,7 @@ void setup() {
   delay(100);
 
   if (!radio_init(hspi)) {
+    ESP.restart();
     return;
   }
 
@@ -39,6 +40,7 @@ void setup() {
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
     Serial.printf("Camera init failed with error 0x%x", err);
+    ESP.restart();
     return;
   }
 
@@ -52,7 +54,7 @@ void loop() {
   // send an image from the framebuffer
   send_image(fb);
   // return the buffer when finished working with it
-  esp_camera_fb_return(fb);
+  // esp_camera_fb_return(fb);
 
   // put a delay before taking the new image
   delay(DELAY_BETWEEN_IMAGES);
