@@ -10,9 +10,9 @@ image_data = ""
 
 while True:
     if s.inWaiting() > 0:
-        start_time = time.time()  # Record the start time for processing
 
         with open(f"./images/image{counter}.jpg", "wb") as file:
+            start_time = time.time()  # Record the start time for processing
             counter += 1
             while True:
                 # Read and decode the byte to string
@@ -21,7 +21,7 @@ while True:
                     word += temp  # Add character to the word
                 else:
                     if word:  # If the word is not empty
-                        print(word)
+                        # print(word)
                         # Check for the start condition
                         if "Starting the writing to SD" in word:
                             # Capture the relevant image data
