@@ -1,3 +1,4 @@
+#include "RF24.h"
 #include "constants.h"  // Including a header file that defines constants used in this file
 #ifndef TX_ROUTINS_H
 #define TX_ROUTINS_H
@@ -52,13 +53,14 @@ bool send_image_end() {
 void init_tx_radio() {
   if (!radio.begin(hspi)) {
     Serial.println("\nCould not initialize TX radio");
+    ESP.restart();
     return;
   } else {
     Serial.println("\nTX Radio initialized successfully");
   }
   radio.setChannel(100);           // Set the radio channel
   radio.setDataRate(RF24_1MBPS);   // Set the data rate
-  radio.setPALevel(RF24_PA_HIGH);  // Set the power amplifier level
+  radio.setPALevel(RF24_PA_MAX);   // Set the power amplifier level
   radio.openWritingPipe(TX_PIPE);  // Open the writing pipe
   return;
 }

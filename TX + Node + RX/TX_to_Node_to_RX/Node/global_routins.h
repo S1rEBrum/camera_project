@@ -25,6 +25,7 @@ void init_sd() {
   // Attempt to initialize the SD card with VSPI and its SS pin
   if (!SD.begin(VSPI_SS, *vspi)) {
     Serial.println("SD Card Mount Failed");  // Print error message if initialization fails
+    ESP.restart();
     return;
   } else {
     Serial.println("SD card initialized successfully");  // Print success message if initialization is successful
@@ -45,10 +46,12 @@ void delete_files_on_sd() {
     }
     String fileName = entry.name();
     if (fileName.endsWith(".jpg")) {
-      SD.remove(fileName);
+      int removed = SD.remove("/" + fileName);
       if (SET_DEBUG) {
-        Serial.print("Deleting: ");
-        Serial.println(fileName);
+        if (removed) {
+          Serial.print("Deleted: ");
+          Serial.println(fileName);
+        }
       }
     }
     entry.close();

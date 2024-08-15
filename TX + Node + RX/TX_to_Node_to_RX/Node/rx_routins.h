@@ -1,3 +1,4 @@
+#include "RF24.h"
 #include "constants.h"  // Including a header file that defines constants used in this file
 #include "tx_routins.h"
 #ifndef RX_ROUTINS_H
@@ -11,13 +12,14 @@ void init_rx_radio() {
   // Attempt to initialize the radio with HSPI
   if (!radio.begin(hspi)) {
     Serial.println("\nCould not initialize RX radio");  // Print error message if initialization fails
+    ESP.restart();
     return;
   } else {
     Serial.println("\nRX Radio initialized successfully");  // Print success message if initialization is successful
   }
   radio.setChannel(5);                // Set the radio channel to 5
-  radio.setDataRate(RF24_1MBPS);      // Set the data rate to 1Mbps
-  radio.setPALevel(RF24_PA_HIGH);     // Set the power amplifier level to high
+  radio.setDataRate(RF24_2MBPS);      // Set the data rate to 1Mbps
+  radio.setPALevel(RF24_PA_LOW);      // Set the power amplifier level to high
   radio.openReadingPipe(1, RX_PIPE);  // Open a reading pipe with a specific address (PIPE)
   radio.startListening();             // Start listening for incoming data
 }
