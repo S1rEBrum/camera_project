@@ -25,6 +25,7 @@ void init_radio() {
   // Attempt to initialize the radio with HSPI
   if (!radio.begin(hspi)) {
     Serial.println("Could not initialize radio");  // Print error message if initialization fails
+    ESP.restart();
     return;
   } else {
     Serial.println("\n\nRadio initialized successfully");  // Print success message if initialization is successful
@@ -41,6 +42,7 @@ void init_sd() {
   // Attempt to initialize the SD card with VSPI and its SS pin
   if (!SD.begin(VSPI_SS, *vspi)) {
     Serial.println("SD Card Mount Failed");  // Print error message if initialization fails
+    ESP.restart();
     return;
   } else {
     Serial.println("SD card initialized successfully");  // Print success message if initialization is successful
@@ -115,27 +117,6 @@ void save_image_to_sd(uint8_t *fb, int size) {
   image_counter++;  // Increment the image counter
 }
 
-void delete_files_on_sd() {
-  File dir = SD.open("/");
-  while (true) {
-    File entry = dir.openNextFile();
-    if (!entry) {
-      break;
-    }
-    String fileName = entry.name();
-    if (fileName.endsWith(".jpg")) {
-      SD.remove(fileName);
-      if (SET_DEBUG) {
-        Serial.print("Deleting: ");
-        Serial.println(fileName);
-      }
-    }
-    entry.close();
-  }
-  dir.close();
-  Serial.println();
-}
-
 void receive_image() {
   // Check if there is data available to read from the radio
   if (radio.available()) {
@@ -201,6 +182,29 @@ void receive_image() {
       packet_counter = 0;            // Reset the packet counter
     }
   }
+}
+
+void delete_files_on_sd() {
+  File dir = SD.open("/");
+  while (true) {
+    File entry = dir.openNextFile();
+    if (!entry) {
+      break;
+    }
+    String fileName = entry.name();
+    if (fileName.endsWith(".jpg")) {
+      int removed = SD.remove("/" + fileName);
+      if (SET_DEBUG) {
+        if (removed) {
+          Serial.print("Deleted: ");
+          Serial.println(fileName);
+        }
+      }
+    }
+    entry.close();
+  }
+  dir.close();
+  Serial.println();
 }
 
 #endif /* ROUTINS_H */
