@@ -33,15 +33,22 @@
             height: calc(100vh - 80px); /* Adjust the height based on the header's height */
             padding: 0;
             box-sizing: border-box;
+            overflow: hidden; /* Hide overflow for zoom effect */
         }
         .content img {
             max-height: 100%;
             max-width: 100%;
-            object-fit: contain; /* Ensure the image fits within the container without distortion */
+            object-fit: contain;
+            transition: transform 0.3s ease; /* Smooth zoom transition */
+        }
+        .content img:hover {
+            transform: scale(1.2); /* Zoom in effect */
+            cursor: zoom-in; /* Change cursor to indicate zoom */
         }
     </style>
 </head>
 <body>
+
 
 <header>
     <h1>Poster</h1>
