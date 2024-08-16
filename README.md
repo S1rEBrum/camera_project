@@ -15,7 +15,11 @@ Our project aims to develop such a solution: a low-power, low-cost camera system
 This project involves multiple engineering sub-tasks, including selecting the appropriate wireless connection type, choosing the right hardware, image processing via code and working with CMOS camera sensors. Our goal is to create a viable prototype that successfully passes testing and meets the company's requirements, paving the way for further development into a real-life product.
 
 ---
+### TL;DR for directories: 
 
+* NRF24L01+ code: 
+* TX + Node + RX:
 
+---
 
 
