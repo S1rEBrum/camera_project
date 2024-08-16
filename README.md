@@ -3,6 +3,11 @@
 https://s1rebrum.github.io/camera_project/
 
 ---
+
+Link to the most current code version: https://github.com/S1rEBrum/camera_project/tree/main/TX%20%2B%20Node%20%2B%20RX/TX_to_Node_to_RX
+
+---
+
 ### Project abstract: 
 Large cargo ships transfer containers, cars and additional goods. Therefore, monitoring security state at various locations on a ship is crucial. Current solutions rely on standard CCTV cameras, which require constant power and Ethernet connections.
 
