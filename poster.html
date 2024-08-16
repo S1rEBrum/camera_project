@@ -26,26 +26,10 @@
             margin: 0;
             font-size: 2rem;
         }
-        nav {
-            background-color: #f8f8f8;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        nav a {
-            color: #2b7ae8;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
         .content {
-            height: calc(100% - 160px); /* Adjusting height to accommodate header and footer */
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
         }
         iframe {
             width: 100%;
@@ -68,13 +52,6 @@
 <header>
     <h1>Poster</h1>
 </header>
-
-<nav>
-    <a href="/">Home</a>
-    <a href="/docs.html">Docs</a>
-    <a href="/about.html">About</a>
-    <a href="/poster.html">Poster</a>
-</nav>
 
 <div class="content">
     <iframe src="./assets/poster.pdf" type="application/pdf"></iframe>
