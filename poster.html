@@ -6,44 +6,44 @@
     <title>Poster</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
+        body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
             color: #333;
             background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
         header {
             background-color: #2b7ae8;
             padding: 1rem;
             text-align: center;
             color: white;
+            position: absolute;
+            top: 0;
+            width: 100%;
         }
         header h1 {
             margin: 0;
             font-size: 2rem;
         }
         .content {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%; /* Adjust width as needed */
+            height: auto;
+            max-height: 80vh; /* PDF will scale up to 80% of the viewport height */
         }
-        iframe {
+        .content iframe {
             width: 100%;
             height: 100%;
             border: none;
-        }
-        footer {
-            background-color: #f8f8f8;
-            padding: 1rem;
-            text-align: center;
-            border-top: 1px solid #eaeaea;
-            position: relative;
-            width: 100%;
-            bottom: 0;
         }
     </style>
 </head>
@@ -54,12 +54,8 @@
 </header>
 
 <div class="content">
-    <iframe src="./assets/poster.pdf" type="application/pdf"></iframe>
+    <iframe src="/assets/your-poster-file.pdf" type="application/pdf"></iframe>
 </div>
-
-<footer>
-    <p>&copy; 2024, Engineering and Computer Science School, HUJI</p>
-</footer>
 
 </body>
 </html>
