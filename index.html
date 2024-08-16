@@ -3,101 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Low-Power Wireless Sensing Camera System for Cargo Ships</title>
+    <title>Your Project Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #add8e6;
             color: #333;
+            background-color: #fff;
         }
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        header {
+            background-color: #2b7ae8;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        nav {
+            background-color: #f8f8f8;
+            padding: 0.5rem;
             text-align: center;
         }
-        h1 {
-            color: #2c3e50;
-        }
-        h2 {
-            color: #2c3e50;
-            font-size: 30px;
-            font-weight: normal;
-            margin-top: 0;
-        }
-        p {
-            margin: 0 0 20px;
-        }
-        a {
-            color: #3498db;
+        nav a {
+            color: #2b7ae8;
             text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
         }
-        a:hover {
+        nav a:hover {
             text-decoration: underline;
         }
-        .hidden-content {
-            display: none;
-            margin-top: 20px;
+        .content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
         }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px; /* Add space between buttons */
-            flex-wrap: wrap; /* Wrap buttons on small screens */
-        }
-        .button {
-            margin: 10px 0;
-            background: #3498db;
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background 0.3s ease;
-            cursor: pointer;
-            width: 200px; /* Ensure all buttons have the same width */
+        footer {
+            background-color: #f8f8f8;
+            padding: 1rem;
             text-align: center;
-            border: none;
-        }
-        .button:hover {
-            background: #2980b9;
+            border-top: 1px solid #eaeaea;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Low-Power Wireless Sensing Camera System for Cargo Ships</h2>
-        <img src="./assets/project image 1.png" alt = "" style="display: block; margin: 0 auto; max-width: 100%;">
-        <div class="button-container">
-            <button class="button" onclick="toggleContent()">Abstract</button>
-            <div class="hidden-content" id="hidden-content">
-                <img src="./assets/design1.png" alt = "" style="display: block; margin: 0 auto; max-width: 100%;">
-                <p>Large cargo ships transfer containers, cars and additional goods. Therefore, monitoring security state at various locations on a ship is crucial. Current solutions rely on standard CCTV cameras, which require constant power and Ethernet connections.</p>
-                <p>Captain's Eye, a start-up company, offers a software solution for monitoring cargo ships through a unified system that collects and processes data from all CCTV cameras on a ship, presenting the results via an app for easy tracking by the captain of the ship. Installing CCTV cameras at distant locations on a cargo ship necessitates extensive cabling (for power and for ethernet), making installation complex and costly.</p>
-                <p>As a result, Captain's Eye proposed a project to develop a solution – small portable camera that does not need constant connection to power and Ethernet and will be able to transfer images for 200 meters and above.</p>
-                <p>Our project aims to develop such a solution: a low-power, low-cost camera system that operates on battery power source for extended periods and uses wireless connectivity to transfer images. The system will remain in sleep mode until activated by a PIR sensor detecting movement. Once activated, the camera will take a few pictures (2-5) and send them wirelessly to a receiver module near the ship's main server. There, "Captain's Eye" software will analyze the images to determine if an event, such as Trespassing, has occurred, and whether to raise an alarm in the app.</p>
-                <p>This project involves multiple engineering sub-tasks, including selecting the appropriate wireless connection type, choosing the right hardware, image processing via code and working with CMOS camera sensors. Our goal is to create a viable prototype that successfully passes testing and meets the company's requirements, paving the way for further development into a real-life product.</p>
-            </div>
-            <button class="button" onclick="window.location.href='https://github.com/S1rEBrum/camera_project/blob/main/esp-now%20code/'">ESP-NOW Code</button>
-            <button class="button" onclick="window.location.href='https://github.com/S1rEBrum/camera_project/blob/main/NRF24L01%2B%20code/'">NRF24L01+ Code</button>
-        </div>
-    </div>
 
-    <script>
-        function toggleContent() {
-            var content = document.getElementById('hidden-content');
-            if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block";
-            } else {
-                content.style.display = "none";
-            }
-        }
-    </script>
+<header>
+    <h1>Your Project Name</h1>
+    <p>A brief description of your project.</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Docs</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="content">
+    <h2>Welcome to Your Project</h2>
+    <p>Introduce your project here. You can add more sections, images, and links to relevant parts of your documentation or code repository.</p>
+    <p>This is a placeholder text. You can replace this content with detailed information about your project, its purpose, and how to get started.</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 Your Project Name. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
