@@ -19,6 +19,12 @@ This project involves multiple engineering sub-tasks, including selecting the ap
 
 * NRF24L01+ code: 
 * TX + Node + RX:
+* assets:
+* current branch:
+* esp-now code:
+* esp-now pictures:
+* measurements:
+* serial_comm_python: 
 
 ---
 
