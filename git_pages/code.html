@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poster and Code Viewer</title>
+    <title>Code Viewer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body {
@@ -13,8 +13,6 @@
             padding: 0;
             color: #333;
             background-color: #fff;
-            height: 100vh;
-            overflow: hidden; /* Prevent scrolling */
         }
         header {
             background-color: #2b7ae8;
@@ -27,33 +25,27 @@
             font-size: 2rem;
         }
         .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 80px); /* Adjust the height based on the header's height */
-            padding: 0;
-            box-sizing: border-box;
-            flex-direction: column;
-        }
-        .content img {
-            max-height: 60%; /* Adjust height to fit the content area */
-            max-width: 100%;
-            object-fit: contain; /* Ensure the image fits within the container without distortion */
-            margin-bottom: 20px; /* Add margin between image and dropdowns */
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
         }
         .dropdown {
             margin: 10px 0;
-            cursor: pointer;
         }
         .dropdown h2 {
             font-size: 1.5rem;
             cursor: pointer;
+            margin: 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         .code-container {
             max-height: 300px; /* Adjust height as needed */
             overflow-y: auto;
             border: 1px solid #ccc;
-            margin-top: 10px;
+            margin-top: 5px;
             display: none; /* Hidden by default */
         }
         pre {
@@ -70,12 +62,10 @@
 <body>
 
 <header>
-    <h1>Poster and Code Viewer</h1>
+    <h1>Code Viewer</h1>
 </header>
 
 <div class="content">
-
-    <img src="../assets/poster.jpg" alt="Poster">
 
     <div class="dropdown">
         <h2 onclick="toggleCode('txCode')">TX Code</h2>
