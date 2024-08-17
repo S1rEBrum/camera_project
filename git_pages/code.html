@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Viewer</title>
+    <title>Poster and Code Viewer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body {
@@ -13,9 +13,36 @@
             padding: 0;
             color: #333;
             background-color: #fff;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        header {
+            background-color: #2b7ae8;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 80px); /* Adjust the height based on the header's height */
+            padding: 0;
+            box-sizing: border-box;
+            flex-direction: column;
+        }
+        .content img {
+            max-height: 60%; /* Adjust height to fit the content area */
+            max-width: 100%;
+            object-fit: contain; /* Ensure the image fits within the container without distortion */
+            margin-bottom: 20px; /* Add margin between image and dropdowns */
         }
         .dropdown {
-            margin: 20px;
+            margin: 10px 0;
             cursor: pointer;
         }
         .dropdown h2 {
@@ -23,7 +50,7 @@
             cursor: pointer;
         }
         .code-container {
-            max-height: 400px;
+            max-height: 300px; /* Adjust height as needed */
             overflow-y: auto;
             border: 1px solid #ccc;
             margin-top: 10px;
@@ -34,25 +61,36 @@
             background-color: #f4f4f4;
             white-space: pre-wrap;
             word-wrap: break-word;
-            font-size: 1rem;
+            font-size: 0.9rem;
             line-height: 1.5;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-<div class="dropdown">
-    <h2 onclick="toggleCode('txCode')">TX Code</h2>
-    <div id="txCode" class="code-container">
-        <pre id="txCodeContent">Loading...</pre>
-    </div>
-</div>
+<header>
+    <h1>Poster and Code Viewer</h1>
+</header>
 
-<div class="dropdown">
-    <h2 onclick="toggleCode('rxCode')">RX Code</h2>
-    <div id="rxCode" class="code-container">
-        <pre id="rxCodeContent">Loading...</pre>
+<div class="content">
+
+    <img src="../assets/poster.jpg" alt="Poster">
+
+    <div class="dropdown">
+        <h2 onclick="toggleCode('txCode')">TX Code</h2>
+        <div id="txCode" class="code-container">
+            <pre id="txCodeContent">Loading...</pre>
+        </div>
     </div>
+
+    <div class="dropdown">
+        <h2 onclick="toggleCode('rxCode')">RX Code</h2>
+        <div id="rxCode" class="code-container">
+            <pre id="rxCodeContent">Loading...</pre>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -71,9 +109,9 @@
     function fetchCode(id) {
         let filePath;
         if (id === 'txCode') {
-            filePath = '/TX/codefile.txt'; // Adjust the path to your TX code file
+            filePath = '../TX + Node + RX/TX_to_Node_to_RX/TX/TX.ino'; // Adjust the path to your TX code file
         } else if (id === 'rxCode') {
-            filePath = '/RX/codefile.txt'; // Adjust the path to your RX code file
+            filePath = '../TX + Node + RX/TX_to_Node_to_RX/RX/RX.ino'; // Adjust the path to your RX code file
         }
 
         fetch(filePath)
