@@ -75,6 +75,13 @@
     </div>
 
     <div class="dropdown">
+        <h2 onclick="toggleCode('nodeCode')">Node Code</h2>
+        <div id="nodeCode" class="code-container">
+            <pre id="nodeCodeContent">Loading...</pre>
+        </div>
+    </div>
+
+    <div class="dropdown">
         <h2 onclick="toggleCode('rxCode')">RX Code</h2>
         <div id="rxCode" class="code-container">
             <pre id="rxCodeContent">Loading...</pre>
@@ -102,6 +109,8 @@
             filePath = '../TX + Node + RX/TX_to_Node_to_RX/TX/TX.ino'; // Adjust the path to your TX code file
         } else if (id === 'rxCode') {
             filePath = '../TX + Node + RX/TX_to_Node_to_RX/RX/RX.ino'; // Adjust the path to your RX code file
+        } else if (id === 'nodeCode') {
+            filePath = '../TX + Node + RX/TX_to_Node_to_RX/Node/Node.ino'; // Adjust the path to your RX code file
         }
 
         fetch(filePath)
