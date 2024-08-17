@@ -33,11 +33,31 @@
             height: calc(100vh - 80px); /* Adjust the height based on the header's height */
             padding: 0;
             box-sizing: border-box;
+            overflow: hidden; /* Hide overflow for zoom effect */
+            position: relative;
         }
         .content img {
             max-height: 100%;
             max-width: 100%;
-            object-fit: contain; /* Ensure the image fits within the container without distortion */
+            object-fit: contain;
+        }
+        .lens {
+            position: absolute;
+            border: 3px solid #2b7ae8;
+            border-radius: 50%;
+            cursor: none; /* Hide the default cursor */
+            width: 300px; /* Double the size */
+            height: 300px; /* Double the size */
+            overflow: hidden;
+            pointer-events: none; /* Ignore pointer events on the lens */
+        }
+        .lens img {
+            position: absolute;
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            transition: none; /* Disable transition on the zoomed image */
         }
     </style>
 </head>
@@ -48,8 +68,48 @@
 </header>
 
 <div class="content">
-    <img src="../assets/poster.jpg" alt="Poster">
+    <img id="poster" src="../assets/poster.jpg" alt="Poster">
+    <div class="lens"></div>
 </div>
+
+<script>
+    const lens = document.querySelector('.lens');
+    const img = document.querySelector('#poster');
+
+    img.addEventListener('mousemove', moveLens);
+    lens.addEventListener('mousemove', moveLens);
+    img.addEventListener('touchmove', moveLens);
+    lens.addEventListener('touchmove', moveLens);
+
+    function moveLens(e) {
+        const pos = getCursorPos(e);
+        const cx = lens.offsetWidth / 2;
+        const cy = lens.offsetHeight / 2;
+        
+        let x = pos.x - cx;
+        let y = pos.y - cy;
+
+        // Prevent the lens from moving out of the image
+        if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+        if (x < 0) { x = 0; }
+        if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+        if (y < 0) { y = 0; }
+
+        lens.style.left = `${pos.x - cx}px`;
+        lens.style.top = `${pos.y - cy}px`;
+
+        lens.style.backgroundImage = `url(${img.src})`;
+        lens.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`;
+        lens.style.backgroundPosition = `-${(pos.x - cx) * 2}px -${(pos.y - cy) * 2}px`;
+    }
+
+    function getCursorPos(e) {
+        const a = img.getBoundingClientRect();
+        const x = e.clientX - a.left;
+        const y = e.clientY - a.top;
+        return { x: x - window.pageXOffset, y: y - window.pageYOffset };
+    }
+</script>
 
 </body>
 </html>
