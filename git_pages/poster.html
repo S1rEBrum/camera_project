@@ -21,6 +21,8 @@
             padding: 1rem;
             text-align: center;
             color: white;
+            z-index: 10;
+            position: relative; /* Make sure header stays on top */
         }
         header h1 {
             margin: 0;
@@ -34,6 +36,8 @@
             padding: 0;
             box-sizing: border-box;
             overflow: hidden; /* Hide overflow for zoom effect */
+            position: relative;
+            z-index: 1;
         }
         .content img {
             max-height: 100%;
@@ -49,13 +53,12 @@
 </head>
 <body>
 
-
 <header>
     <h1>Poster</h1>
 </header>
 
 <div class="content">
-    <img src="./assets/poster.jpg" alt="Poster">
+    <img src="/assets/your-poster-file.jpg" alt="Poster">
 </div>
 
 </body>
