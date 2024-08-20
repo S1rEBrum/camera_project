@@ -58,7 +58,7 @@ void init_tx_radio() {
   } else {
     Serial.println("\nTX Radio initialized successfully");
   }
-  radio.setChannel(125);           // Set the radio channel
+  radio.setChannel(100);           // Set the radio channel
   radio.setDataRate(RF24_1MBPS);   // Set the data rate
   radio.setPALevel(RF24_PA_MAX);   // Set the power amplifier level
   radio.openWritingPipe(TX_PIPE);  // Open the writing pipe
