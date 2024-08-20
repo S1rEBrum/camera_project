@@ -1,7 +1,7 @@
 import serial
 import time
 
-s = serial.Serial('/dev/cu.usbserial-0001', 460800, timeout=None)
+s = serial.Serial('/dev/cu.usbserial-0001', 115200, timeout=None)
 
 global counter
 counter = 0
