@@ -13,6 +13,7 @@ Link to the most current code version: https://github.com/S1rEBrum/camera_projec
 * TX + Node + RX: code for full system and snippets for testing each part (TX + Node, Node + RX)
 * assets: assets for Github Pages website
 * esp-now code: codes for ESP-NOW protocol communication
+* git_pages: html pages for github.io website
 * measurements: Jupiter Notebooks with measurements from the system 
 * previous codes: different updated codes for ESP-NOW and nRF communication
 * serial_comm_python: python code for getting images from ESP32 receiver to PC via USB/UART wired communication
