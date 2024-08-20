@@ -95,7 +95,7 @@ void save_image_to_sd(uint8_t *fb, int size) {
     Serial.println("No correct data to save");
     return;
   }
-  Serial.println("Starting the writing to SD");
+  Serial.printf("Starting the writing to SD");
 
   // Create the file path for the image
   String path = "/picture" + String(image_counter) + ".jpg";
@@ -106,11 +106,18 @@ void save_image_to_sd(uint8_t *fb, int size) {
   if (!file) {
     Serial.println("Failed to open file in writing mode\n");  // Print error message if the file cannot be opened
   } else {
-    file.write(fb, size);                                       // Write the image data to the file
-    uint8_t n1 = 255;                                           // JPEG end-of-image marker byte 1
-    uint8_t n2 = 217;                                           // JPEG end-of-image marker byte 2
-    file.write(n1);                                             // Write the end-of-image marker byte 1
-    file.write(n2);                                             // Write the end-of-image marker byte 2
+    file.write(fb, size);  // Write the image data to the file
+    for (int i = 0; i < size; ++i) {
+      Serial.printf("%d ", fb[i]);
+    }
+    // Serial.print(fb, size);
+    uint8_t n1 = 255;  // JPEG end-of-image marker byte 1
+    uint8_t n2 = 217;  // JPEG end-of-image marker byte 2
+    file.write(n1);    // Write the end-of-image marker byte 1
+    file.write(n2);    // Write the end-of-image marker byte 2
+    Serial.printf("%d ", n1);
+    Serial.printf("%d ", n2);
+    Serial.print("\n");
     Serial.printf("Saved file to path: %s\n\n", path.c_str());  // Print the path of the saved file
   }
   file.close();     // Close the file
