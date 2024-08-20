@@ -32,7 +32,7 @@ void init_radio() {
   }
   radio.setChannel(100);           // Set the radio channel to 5
   radio.setDataRate(RF24_1MBPS);   // Set the data rate to 1Mbps
-  radio.setPALevel(RF24_PA_MAX);  // Set the power amplifier level to high
+  radio.setPALevel(RF24_PA_MAX);   // Set the power amplifier level to high
   radio.openReadingPipe(1, PIPE);  // Open a reading pipe with a specific address (PIPE)
   radio.startListening();          // Start listening for incoming data
 }
@@ -52,6 +52,30 @@ void init_sd() {
     Serial.println("No SD Card attached");  // Print error message if no SD card is attached
     return;
   }
+}
+
+// function to clear SD card
+void delete_files_on_sd() {
+  File dir = SD.open("/");
+  while (true) {
+    File entry = dir.openNextFile();
+    if (!entry) {
+      break;
+    }
+    String fileName = entry.name();
+    if (fileName.endsWith(".jpg")) {
+      int removed = SD.remove("/" + fileName);
+      if (SET_DEBUG) {
+        if (removed) {
+          Serial.print("Deleted: ");
+          Serial.println(fileName);
+        }
+      }
+    }
+    entry.close();
+  }
+  dir.close();
+  Serial.println();
 }
 
 // Function to check if the start of an image has been received
@@ -142,6 +166,11 @@ void receive_image() {
     // Check if the end of the image has been received
     if (got_image_end(buf)) {
       Serial.println("Got end packet");
+      // if the amount of images on the SD reached N - delete all
+      if (image_counter > MAX_IMAGES_TO_SAVE) {
+        delete_files_on_sd();
+        image_counter = 0;
+      }
       // Save the image to the SD card
       save_image_to_sd(fb, image_size);
       delete[] fb;                    // Free the allocated memory for the image
@@ -189,29 +218,6 @@ void receive_image() {
       packet_counter = 0;            // Reset the packet counter
     }
   }
-}
-
-void delete_files_on_sd() {
-  File dir = SD.open("/");
-  while (true) {
-    File entry = dir.openNextFile();
-    if (!entry) {
-      break;
-    }
-    String fileName = entry.name();
-    if (fileName.endsWith(".jpg")) {
-      int removed = SD.remove("/" + fileName);
-      if (SET_DEBUG) {
-        if (removed) {
-          Serial.print("Deleted: ");
-          Serial.println(fileName);
-        }
-      }
-    }
-    entry.close();
-  }
-  dir.close();
-  Serial.println();
 }
 
 #endif /* ROUTINS_H */

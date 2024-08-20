@@ -9,6 +9,7 @@
 // Define constants for the project
 #define BAUDRATE 115200      // Baud rate for serial communication
 #define SET_DEBUG false      // Debugging flag
+#define MAX_IMAGES_TO_SAVE 5
 #define PACKET_SIZE 30       // Size of each packet
 #define PIPE 0x0987654321LL  // Address of the radio communication pipe
 
