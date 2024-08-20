@@ -17,7 +17,7 @@ void init_rx_radio() {
   } else {
     Serial.println("\nRX Radio initialized successfully");  // Print success message if initialization is successful
   }
-  radio.setChannel(25);                // Set the radio channel to 5
+  radio.setChannel(25);               // Set the radio channel to 5
   radio.setDataRate(RF24_2MBPS);      // Set the data rate to 1Mbps
   radio.setPALevel(RF24_PA_LOW);      // Set the power amplifier level to high
   radio.openReadingPipe(1, RX_PIPE);  // Open a reading pipe with a specific address (PIPE)
@@ -116,6 +116,11 @@ void receive_image() {
         bool sent_successfully = send_image(fb, image_size);
         if (sent_successfully) {
           Serial.println("Image sent successfully.");
+          // if the amount of images on the SD reached N - delete all
+          if (image_counter > MAX_IMAGES_TO_SAVE) {
+            delete_files_on_sd();
+            image_counter = 0;
+          }
         } else {
           Serial.println("Sending image failed.");
         }
@@ -124,6 +129,7 @@ void receive_image() {
       packet_counter = 0;             // Reset the packet counter
       receiving_image = false;        // Reset the receiving image flag
       receiving_credentials = false;  // Reset the receiving credentials flag
+
       init_rx_radio();
     }
     // Check if image data is being received
