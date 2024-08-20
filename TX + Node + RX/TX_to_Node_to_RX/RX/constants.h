@@ -7,7 +7,7 @@
 #include <SD.h>            // Include header for SD card library
 
 // Define constants for the project
-#define BAUDRATE 460800      // Baud rate for serial communication
+#define BAUDRATE 115200      // Baud rate for serial communication
 #define SET_DEBUG false      // Debugging flag
 #define PACKET_SIZE 30       // Size of each packet
 #define PIPE 0x0987654321LL  // Address of the radio communication pipe
