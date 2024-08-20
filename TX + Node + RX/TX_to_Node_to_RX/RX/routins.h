@@ -30,9 +30,9 @@ void init_radio() {
   } else {
     Serial.println("\n\nRadio initialized successfully");  // Print success message if initialization is successful
   }
-  radio.setChannel(100);           // Set the radio channel to 5
+  radio.setChannel(125);           // Set the radio channel to 5
   radio.setDataRate(RF24_1MBPS);   // Set the data rate to 1Mbps
-  radio.setPALevel(RF24_PA_HIGH);  // Set the power amplifier level to high
+  radio.setPALevel(RF24_PA_MAX);  // Set the power amplifier level to high
   radio.openReadingPipe(1, PIPE);  // Open a reading pipe with a specific address (PIPE)
   radio.startListening();          // Start listening for incoming data
 }
