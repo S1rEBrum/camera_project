@@ -11,11 +11,10 @@ void setup() {
   pinMode(NRF_MISO_PIN, INPUT);
   pinMode(NRF_MOSI_PIN, OUTPUT);
 
+  pinMode(PIR_PIN, INPUT);
+
   digitalWrite(NRF_CSN_PIN, HIGH);
   digitalWrite(NRF_MISO_PIN, LOW);
-
-  // Initialize HC-SR501 pin
-  // pinMode(HC_SR501_OUT_PIN, INPUT);
 
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);  //disable brownout detector
   Serial.begin(BAUDRATE);
@@ -48,14 +47,18 @@ void setup() {
 }
 
 void loop() {
-  // initialize the frame buffer with NULL
-  camera_fb_t *fb = NULL;
+  int pirState = digitalRead(PIR_PIN);
 
-  // send an image from the framebuffer
-  send_image(fb);
-  // return the buffer when finished working with it
-  // esp_camera_fb_return(fb);
-
-  // put a delay before taking the new image
-  delay(DELAY_BETWEEN_IMAGES);
+  if (pirState == HIGH) {
+    Serial.println("Motion Detected!");
+    // initialize the frame buffer with NULL
+    camera_fb_t *fb = NULL;
+    // send an image from the framebuffer
+    send_image(fb);
+    // put a delay before taking the new image
+    delay(DELAY_BETWEEN_IMAGES);
+  } else {
+    Serial.println("No Motion");
+    delay(1000);
+  }
 }

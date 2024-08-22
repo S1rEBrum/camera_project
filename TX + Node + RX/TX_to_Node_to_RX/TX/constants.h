@@ -2,16 +2,16 @@
 #define CONSTANTS_H
 
 // Include necessary libraries
-#include <esp_now.h>     // Main protocol for ESP-NOW
-#include <WiFi.h>        // WiFi handler
-#include <esp_wifi.h>    // WiFi functions for ESP boards
 #include "esp_camera.h"  // Camera initializer
-#include "Arduino.h"
 #include "FS.h"                // File system for SD Card on ESP32
-#include "SD_MMC.h"            // SD Card library for ESP32
 #include "soc/soc.h"           // Disable brownout problems
 #include "soc/rtc_cntl_reg.h"  // Disable brownout problems
 #include "driver/rtc_io.h"     // RTC I/O driver
+#include "HardwareSerial.h"    // Include the HardwareSerial library for serial communication
+#include <nRF24L01.h>          // Include the nRF24L01 library for radio communication
+#include <RF24.h>              // Include the RF24 library for handling nRF24L01
+#include <SPI.h>               // Include the SPI library for SPI communication
+
 
 // Pin definition for CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM 32
@@ -39,7 +39,7 @@
 #define NRF_MOSI_PIN 13  // Master Out Slave In pin
 
 // Pin definition for HC-SR501 motion sensor
-// #define HC_SR501_OUT_PIN 12  // Output pin for the motion sensor
+#define PIR_PIN 4  // Output pin for the motion sensor
 
 // Debugging settings
 #define SET_DEBUG false  // Debugging flag
@@ -48,9 +48,9 @@
 #define BAUDRATE 115200  // Baud rate for serial communication
 
 // Timing settings
-#define DELAY_BETWEEN_IMAGES 20000  // Delay between capturing two images in milliseconds
+#define DELAY_BETWEEN_IMAGES 10000  // Delay between capturing two images in milliseconds
 #define SETUP_DELAY 10000           // Setup delay in milliseconds
-#define PACKETS_DELAY 0.1             // Delay between packet transmissions in milliseconds
+#define PACKETS_DELAY 0.1           // Delay between packet transmissions in milliseconds
 
 // nRF24L01 radio module settings
 #define PACKET_SIZE 30       // Size of each packet in bytes

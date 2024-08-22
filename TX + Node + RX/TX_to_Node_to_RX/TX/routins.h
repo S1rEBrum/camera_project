@@ -1,9 +1,4 @@
-#include "HardwareSerial.h"  // Include the HardwareSerial library for serial communication
-#include <nRF24L01.h>        // Include the nRF24L01 library for radio communication
-#include <RF24.h>            // Include the RF24 library for handling nRF24L01
-#include <SPI.h>             // Include the SPI library for SPI communication
-#include "esp_camera.h"      // Include the ESP32 camera library
-#include "constants.h"       // Include a user-defined constants file (assumed to be provided)
+#include "constants.h"  // Include a user-defined constants file (assumed to be provided)
 #ifndef ROUTINS_H
 #define ROUTINS_H
 
@@ -35,15 +30,18 @@ camera_config_t camera_init() {
   config.pixel_format = PIXFORMAT_JPEG;  // Set pixel format to JPEG
 
   // Select lower resolution if camera does not support PSRAM
-  if (psramFound()) {
-    config.frame_size = FRAMESIZE_SVGA;  // Set frame size to SVGA if PSRAM is found
-    config.jpeg_quality = 10;            // Set JPEG quality
-    config.fb_count = 1;
-  } else {
-    config.frame_size = FRAMESIZE_VGA;  // Set frame size to VGA if PSRAM is not found
-    config.jpeg_quality = 15;           // Set JPEG quality
-    config.fb_count = 1;
-  }
+  // if (psramFound()) {
+  //   config.frame_size = FRAMESIZE_SVGA;  // Set frame size to SVGA if PSRAM is found
+  //   config.jpeg_quality = 10;            // Set JPEG quality
+  //   config.fb_count = 1;
+  // } else {
+  //   config.frame_size = FRAMESIZE_VGA;  // Set frame size to VGA if PSRAM is not found
+  //   config.jpeg_quality = 15;           // Set JPEG quality
+  //   config.fb_count = 1;
+  // }
+  config.frame_size = FRAMESIZE_VGA;  // Set frame size to VGA if PSRAM is not found
+  config.jpeg_quality = 15;           // Set JPEG quality
+  config.fb_count = 1;
   return config;
 }
 
@@ -157,7 +155,7 @@ bool radio_init(SPIClass* hspi) {
   } else {
     Serial.println("\n\nRadio initialized successfully");
   }
-  radio.setChannel(25);            // Set the radio channel
+  radio.setChannel(25);           // Set the radio channel
   radio.setDataRate(RF24_2MBPS);  // Set the data rate
   radio.setPALevel(RF24_PA_LOW);  // Set the power amplifier level
   radio.openWritingPipe(PIPE);    // Open the writing pipe
